@@ -27,11 +27,11 @@ Az = [cos(rad), -sin(rad), 0;
 Cz = Az * B
 
 %plot3(Cy);
-
-
 bb = [1;0;2];
+
 aa = Ax
 ab = Ay
+
 ra = aa * ab
 
 md = aa * bb
