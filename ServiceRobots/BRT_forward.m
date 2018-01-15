@@ -1,4 +1,13 @@
-syms t1 d1 t2 t3 d2 d3;
+syms t1 t2 t3 d1 d2 d3;
+
+%d1 = 2;
+%d2 = 2;
+%d3 = 0.5;
+
+%t1 = degtorad(30)
+%t2 = degtorad(30)
+%t3 = degtorad(30)
+
 
 A1 = [cos(t1), -sin(t1), 0, 0;
     sin(t1), cos(t1), 0, 0;
@@ -36,3 +45,20 @@ A4 = [1, 0, 0, d3;
 
 
 T = A1 * A2 * A3 * A4
+
+x = 1.0825
+y = 1.8750
+z = 3.2500
+
+%t1 = pi()/4
+
+eq1 = (5*cos(t3)*(cos(t1)*cos(t2) - sin(t1)*sin(t2)))/2 == x;
+eq2 = (5*cos(t3)*(cos(t1)*sin(t2) + cos(t2)*sin(t1)))/2 == y;
+eq3 = (5*sin(t3))/2 + 2 == z;
+
+sol = solve([eq1, eq2, eq3], [t1, t2, t3])
+
+%st1 = round(radtodeg(sol.t1))
+%st2 = round(radtodeg(sol.t2))
+%st3 = round(radtodeg(sol.t3))
+
