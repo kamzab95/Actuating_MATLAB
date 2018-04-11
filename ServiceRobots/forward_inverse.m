@@ -1,4 +1,4 @@
-syms t1 t2 t3; % d1 d2 d3 d4;
+syms x y z t1 t2 t3 d1 d2 d3 d4;
 
 %t1 = degtorad(0);
 %t2 = degtorad(0);
@@ -11,11 +11,11 @@ a4 = degtorad(-45);
 a5 = degtorad(-45);
 a6 = degtorad(45);
 
-
-d1 = 1;
-d2 = 1;
-d3 = 1;
-d4 = 1;
+%dimensions of the robot
+d1 = 0.25;
+d2 = 0.5;
+d3 = 0.5;
+d4 = 0.45;
 
 
 % ---A1---
@@ -113,15 +113,20 @@ A7 = [1, 0 , 0, 0;
    
 T = A1 * A2 * A3 * A4 * A5 * A6 * A7;
 
-xx = T(1,4)
-yy = T(2,4)
-zz = T(3,4)
 
-%
+xx = T(1,4);
+yy = T(2,4);
+zz = T(3,4);
 
-eq1 = xx == 0;
-eq2 = yy == -2;
-eq3 = zz == 1;
+%simplified forward kinemtics result
+sx = simplify(xx);
+sy = simplify(yy);
+sz = simplify(zz);
+
+% expected position of endpoint
+eq1 = sx == -0.70;
+eq2 = sy == -0.45;
+eq3 = sz == 0.25;
 
 %tx = round(xx,2)
 %ty = round(yy, 2)
@@ -129,9 +134,15 @@ eq3 = zz == 1;
 
 [t1,t2,t3] = solve([eq1, eq2, eq3]);
 
+%tx = simplify(t1)
+%ty = simplify(t2)
+%tz = simplify(t3)
+
+%solution, theta*
 dt1 = round(radtodeg(t1))
 dt2 = round(radtodeg(t2))
 dt3 = round(radtodeg(t3))
+
 
 
 
